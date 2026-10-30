@@ -1,0 +1,89 @@
+# Sheet Reader Agent Configuration
+spreadsheet_id: ""  # set per environment: GROWTH_SPREADSHEET_ID
+
+sheet1_18mo:
+  tab_name: "L6W SSS Summary (18 Mo.)"
+  header_row: 11
+  owner_tag_row: 10
+  benchmark_start_row: 3
+  benchmark_end_row: 6
+
+sheet1_15mo:
+  tab_name: "L6W SSS Summary (15 Mo.)"
+  header_row: 11
+
+sheet2:
+  tab_name: "'ArcGIS (HH, At Scale GOV)'"
+  header_row: 3
+  columns:
+    - "strategy_id"
+    - "strategy_name"
+    - "source"
+    - "dma"
+    - "city"
+    - "county"
+    - "state"
+    - "zip_code"
+    - "lat"
+    - "long"
+
+# A sheet whose headers differ from the names below maps them here, canonical name ->
+# the header as that sheet spells it. Set per environment (GROWTH_SETTINGS_OVERRIDE),
+# never in this file, e.g. {"Kitchen Name": "Store", "Google Rating": "Rating (Google)"}.
+column_aliases: {}
+
+# Complete list of columns required for Pandas DataFrame extraction and Doc tables
+table_columns:
+  - "Kitchen Name"
+  - "Population Type"
+  - "L6W SSS or YoY (Kitchen + MP)"
+  - "GOV (Kitchen + MP)"
+  - "GOV (Kitchen Only)"
+  - "GOV (MP Only)"
+  - "App / Web Traffic (1P) - Overall"
+  - "Conversion (1P)"
+  - "Taste Rating (Kitchen)"
+  - "IOR % (Kitchen) Target = < 10%"
+  - "In-Stock Rate %"
+  - "Dinner Mix % Total GOV"
+  - "Promo GOV % 1P GOV"
+
+business_logic:
+  sort_column: "L6W SSS or YoY (Kitchen + MP)"
+  top_stores_count: 5
+  bottom_18mo_count: 5
+  bottom_15mo_count: 3
+  join_keys:
+    sheet1: "Kitchen Name"
+    sheet2: "strategy_name"
+
+metrics_config:
+  must_have:
+    - name: "Households (Geolytix)"
+      higher_is_better: true
+    - name: "Google Rating"
+      higher_is_better: true
+    - name: "3P GOV % of Total GOV"
+      higher_is_better: true
+    - name: "MP % of 1P App / Web"
+      higher_is_better: true
+    - name: "App / Web Traffic (1P) - Overall"
+      higher_is_better: true
+    - name: "Conversion (1P)"
+      higher_is_better: true
+    - name: "New Brand Mix % (Kitchen)"
+      higher_is_better: true
+
+  nice_to_have:
+    - name: "In-Stock Rate %"
+      higher_is_better: true
+    - name: "O2E"
+      higher_is_better: false
+    - name: "IOR % (Kitchen) Target = < 10%"
+      higher_is_better: false
+    - name: "Order Accuracy"
+      higher_is_better: true
+    - name: "Taste Rating (Kitchen)"
+      higher_is_better: true
+    - name: "Value Rating (Kitchen)"
+      higher_is_better: true

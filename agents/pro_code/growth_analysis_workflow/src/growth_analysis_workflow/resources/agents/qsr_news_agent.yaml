@@ -1,0 +1,9 @@
+# QSR Industry News Agent Configuration
+rss_feeds:
+  "QSR Magazine": "https://www.qsrmagazine.com/feed/"
+  "FastCasual": "https://www.fastcasual.com/rss/"
+  "Restaurant Dive": "https://www.restaurantdive.com/feeds/news/"
+
+window_days: 42
+fallback_article_limit: 5
+max_workers: 3

@@ -1,0 +1,1497 @@
+{
+ "note": "Sample external data for the demo; see deployment/seed/growth_external_samples.py.",
+ "weather": {
+  "Dallas": {
+   "store_id": "S003",
+   "latitude": 32.799,
+   "longitude": -96.801,
+   "analysis_period": "2026-09-11 to 2026-10-23",
+   "baseline_mean_temp_c": 25.9,
+   "total_anomalous_days": 22,
+   "total_rain_days": 11,
+   "total_snow_days": 0,
+   "key_storm_dates": [
+    "2026-09-11",
+    "2026-09-13",
+    "2026-09-14",
+    "2026-09-15",
+    "2026-09-16",
+    "2026-09-17",
+    "2026-09-18",
+    "2026-09-20",
+    "2026-09-23",
+    "2026-09-27",
+    "2026-09-28",
+    "2026-09-30",
+    "2026-10-01",
+    "2026-10-02",
+    "2026-10-03",
+    "2026-10-04",
+    "2026-10-16",
+    "2026-10-17",
+    "2026-10-18",
+    "2026-10-19",
+    "2026-10-20",
+    "2026-10-21"
+   ],
+   "anomalous_daily_records": [
+    {
+     "date": "2026-09-11 (Friday)",
+     "weather_condition": "Slight Rain",
+     "temp_max_c": 35.1,
+     "temp_min_c": 24,
+     "temp_mean_c": 28.8,
+     "precipitation_in": 0.12,
+     "precipitation_hours": 7,
+     "snowfall_in": 0,
+     "wind_gust_max_mph": 18.1,
+     "anomaly_flags": [
+      "Sustained Rain (0.12 in over 7.0 hrs)"
+     ]
+    },
+    {
+     "date": "2026-09-13 (Sunday)",
+     "weather_condition": "Mainly Clear",
+     "temp_max_c": 38,
+     "temp_min_c": 26.2,
+     "temp_mean_c": 32.6,
+     "precipitation_in": 0,
+     "precipitation_hours": 0,
+     "snowfall_in": 0,
+     "wind_gust_max_mph": 22.8,
+     "anomaly_flags": [
+      "Heatwave (Mean: 32.6\u00b0C vs Baseline: 25.9\u00b0C)"
+     ]
+    },
+    {
+     "date": "2026-09-14 (Monday)",
+     "weather_condition": "Mainly Clear",
+     "temp_max_c": 37.3,
+     "temp_min_c": 26.5,
+     "temp_mean_c": 32,
+     "precipitation_in": 0,
+     "precipitation_hours": 0,
+     "snowfall_in": 0,
+     "wind_gust_max_mph": 26.2,
+     "anomaly_flags": [
+      "Heatwave (Mean: 32.0\u00b0C vs Baseline: 25.9\u00b0C)"
+     ]
+    },
+    {
+     "date": "2026-09-15 (Tuesday)",
+     "weather_condition": "Light Drizzle",
+     "temp_max_c": 38.1,
+     "temp_min_c": 26.8,
+     "temp_mean_c": 32.6,
+     "precipitation_in": 0,
+     "precipitation_hours": 1,
+     "snowfall_in": 0,
+     "wind_gust_max_mph": 24.8,
+     "anomaly_flags": [
+      "Heatwave (Mean: 32.6\u00b0C vs Baseline: 25.9\u00b0C)"
+     ]
+    },
+    {
+     "date": "2026-09-16 (Wednesday)",
+     "weather_condition": "Light Drizzle",
+     "temp_max_c": 37.5,
+     "temp_min_c": 27.3,
+     "temp_mean_c": 32.8,
+     "precipitation_in": 0.03,
+     "precipitation_hours": 4,
+     "snowfall_in": 0,
+     "wind_gust_max_mph": 20.1,
+     "anomaly_flags": [
+      "Heatwave (Mean: 32.8\u00b0C vs Baseline: 25.9\u00b0C)"
+     ]
+    },
+    {
+     "date": "2026-09-17 (Thursday)",
+     "weather_condition": "Light Drizzle",
+     "temp_max_c": 37.4,
+     "temp_min_c": 27.2,
+     "temp_mean_c": 32.5,
+     "precipitation_in": 0.01,
+     "precipitation_hours": 3,
+     "snowfall_in": 0,
+     "wind_gust_max_mph": 20.1,
+     "anomaly_flags": [
+      "Heatwave (Mean: 32.5\u00b0C vs Baseline: 25.9\u00b0C)"
+     ]
+    }
+   ]
+  },
+  "Naperville": {
+   "store_id": "S009",
+   "latitude": 41.7508,
+   "longitude": -88.1535,
+   "analysis_period": "2026-09-11 to 2026-10-23",
+   "baseline_mean_temp_c": 16.4,
+   "total_anomalous_days": 17,
+   "total_rain_days": 12,
+   "total_snow_days": 0,
+   "key_storm_dates": [
+    "2026-09-12",
+    "2026-09-15",
+    "2026-09-16",
+    "2026-09-17",
+    "2026-09-18",
+    "2026-09-19",
+    "2026-09-20",
+    "2026-09-21",
+    "2026-09-30",
+    "2026-10-01",
+    "2026-10-12",
+    "2026-10-13",
+    "2026-10-14",
+    "2026-10-15",
+    "2026-10-16",
+    "2026-10-17",
+    "2026-10-18"
+   ],
+   "anomalous_daily_records": [
+    {
+     "date": "2026-09-12 (Saturday)",
+     "weather_condition": "Overcast",
+     "temp_max_c": 29.4,
+     "temp_min_c": 17.1,
+     "temp_mean_c": 23.1,
+     "precipitation_in": 0,
+     "precipitation_hours": 0,
+     "snowfall_in": 0,
+     "wind_gust_max_mph": 18.3,
+     "anomaly_flags": [
+      "Heatwave (Mean: 23.1\u00b0C vs Baseline: 16.4\u00b0C)"
+     ]
+    },
+    {
+     "date": "2026-09-15 (Tuesday)",
+     "weather_condition": "Moderate Rain",
+     "temp_max_c": 26.5,
+     "temp_min_c": 17.6,
+     "temp_mean_c": 21.9,
+     "precipitation_in": 0.77,
+     "precipitation_hours": 12,
+     "snowfall_in": 0,
+     "wind_gust_max_mph": 26.2,
+     "anomaly_flags": [
+      "Heavy Rain (0.77 in)",
+      "Heatwave (Mean: 21.9\u00b0C vs Baseline: 16.4\u00b0C)"
+     ]
+    },
+    {
+     "date": "2026-09-16 (Wednesday)",
+     "weather_condition": "Slight Rain",
+     "temp_max_c": 24.6,
+     "temp_min_c": 18.1,
+     "temp_mean_c": 20.9,
+     "precipitation_in": 0.22,
+     "precipitation_hours": 10,
+     "snowfall_in": 0,
+     "wind_gust_max_mph": 16.6,
+     "anomaly_flags": [
+      "Sustained Rain (0.22 in over 10.0 hrs)"
+     ]
+    },
+    {
+     "date": "2026-09-17 (Thursday)",
+     "weather_condition": "Moderate Rain",
+     "temp_max_c": 27.3,
+     "temp_min_c": 19,
+     "temp_mean_c": 21.9,
+     "precipitation_in": 0.27,
+     "precipitation_hours": 12,
+     "snowfall_in": 0,
+     "wind_gust_max_mph": 18.6,
+     "anomaly_flags": [
+      "Sustained Rain (0.27 in over 12.0 hrs)",
+      "Heatwave (Mean: 21.9\u00b0C vs Baseline: 16.4\u00b0C)"
+     ]
+    },
+    {
+     "date": "2026-09-18 (Friday)",
+     "weather_condition": "Slight Rain",
+     "temp_max_c": 22.2,
+     "temp_min_c": 17.5,
+     "temp_mean_c": 19.8,
+     "precipitation_in": 0.2,
+     "precipitation_hours": 7,
+     "snowfall_in": 0,
+     "wind_gust_max_mph": 21.3,
+     "anomaly_flags": [
+      "Sustained Rain (0.20 in over 7.0 hrs)"
+     ]
+    },
+    {
+     "date": "2026-09-19 (Saturday)",
+     "weather_condition": "Heavy Rain",
+     "temp_max_c": 22.3,
+     "temp_min_c": 17.3,
+     "temp_mean_c": 19.6,
+     "precipitation_in": 1.43,
+     "precipitation_hours": 18,
+     "snowfall_in": 0,
+     "wind_gust_max_mph": 23.7,
+     "anomaly_flags": [
+      "Heavy Rain (1.43 in)"
+     ]
+    }
+   ]
+  },
+  "Tempe": {
+   "store_id": "S019",
+   "latitude": 33.4255,
+   "longitude": -111.94,
+   "analysis_period": "2026-09-11 to 2026-10-23",
+   "baseline_mean_temp_c": 28.2,
+   "total_anomalous_days": 19,
+   "total_rain_days": 16,
+   "total_snow_days": 0,
+   "key_storm_dates": [
+    "2026-09-11",
+    "2026-09-12",
+    "2026-09-13",
+    "2026-09-14",
+    "2026-09-15",
+    "2026-09-16",
+    "2026-09-17",
+    "2026-09-24",
+    "2026-09-27",
+    "2026-09-28",
+    "2026-09-29",
+    "2026-10-10",
+    "2026-10-11",
+    "2026-10-12",
+    "2026-10-13",
+    "2026-10-14",
+    "2026-10-21",
+    "2026-10-22",
+    "2026-10-23"
+   ],
+   "anomalous_daily_records": [
+    {
+     "date": "2026-09-11 (Friday)",
+     "weather_condition": "Moderate Rain",
+     "temp_max_c": 39.3,
+     "temp_min_c": 28.2,
+     "temp_mean_c": 34.5,
+     "precipitation_in": 0.21,
+     "precipitation_hours": 6,
+     "snowfall_in": 0,
+     "wind_gust_max_mph": 28.9,
+     "anomaly_flags": [
+      "Sustained Rain (0.21 in over 6.0 hrs)",
+      "Heatwave (Mean: 34.5\u00b0C vs Baseline: 28.2\u00b0C)"
+     ]
+    },
+    {
+     "date": "2026-09-12 (Saturday)",
+     "weather_condition": "Moderate Rain",
+     "temp_max_c": 38.4,
+     "temp_min_c": 25.7,
+     "temp_mean_c": 32.1,
+     "precipitation_in": 0.29,
+     "precipitation_hours": 9,
+     "snowfall_in": 0,
+     "wind_gust_max_mph": 21.3,
+     "anomaly_flags": [
+      "Sustained Rain (0.29 in over 9.0 hrs)"
+     ]
+    },
+    {
+     "date": "2026-09-13 (Sunday)",
+     "weather_condition": "Light Drizzle",
+     "temp_max_c": 38.4,
+     "temp_min_c": 30,
+     "temp_mean_c": 33.9,
+     "precipitation_in": 0.01,
+     "precipitation_hours": 2,
+     "snowfall_in": 0,
+     "wind_gust_max_mph": 16.3,
+     "anomaly_flags": [
+      "Heatwave (Mean: 33.9\u00b0C vs Baseline: 28.2\u00b0C)"
+     ]
+    },
+    {
+     "date": "2026-09-14 (Monday)",
+     "weather_condition": "Moderate Drizzle",
+     "temp_max_c": 37.7,
+     "temp_min_c": 26.3,
+     "temp_mean_c": 33.6,
+     "precipitation_in": 0.11,
+     "precipitation_hours": 9,
+     "snowfall_in": 0,
+     "wind_gust_max_mph": 22.8,
+     "anomaly_flags": [
+      "Sustained Rain (0.11 in over 9.0 hrs)"
+     ]
+    },
+    {
+     "date": "2026-09-15 (Tuesday)",
+     "weather_condition": "Dense Drizzle",
+     "temp_max_c": 37.6,
+     "temp_min_c": 25.5,
+     "temp_mean_c": 31.7,
+     "precipitation_in": 0.14,
+     "precipitation_hours": 10,
+     "snowfall_in": 0,
+     "wind_gust_max_mph": 19.5,
+     "anomaly_flags": [
+      "Sustained Rain (0.14 in over 10.0 hrs)"
+     ]
+    },
+    {
+     "date": "2026-09-16 (Wednesday)",
+     "weather_condition": "Heavy Rain",
+     "temp_max_c": 29.9,
+     "temp_min_c": 22.8,
+     "temp_mean_c": 26.1,
+     "precipitation_in": 1.7,
+     "precipitation_hours": 19,
+     "snowfall_in": 0,
+     "wind_gust_max_mph": 26.4,
+     "anomaly_flags": [
+      "Heavy Rain (1.70 in)"
+     ]
+    }
+   ]
+  },
+  "Edina": {
+   "store_id": "S011",
+   "latitude": 44.8897,
+   "longitude": -93.3499,
+   "analysis_period": "2026-09-11 to 2026-10-23",
+   "baseline_mean_temp_c": 15.4,
+   "total_anomalous_days": 14,
+   "total_rain_days": 9,
+   "total_snow_days": 0,
+   "key_storm_dates": [
+    "2026-09-11",
+    "2026-09-14",
+    "2026-09-18",
+    "2026-09-19",
+    "2026-09-26",
+    "2026-09-27",
+    "2026-09-29",
+    "2026-10-03",
+    "2026-10-10",
+    "2026-10-11",
+    "2026-10-12",
+    "2026-10-15",
+    "2026-10-16",
+    "2026-10-17"
+   ],
+   "anomalous_daily_records": [
+    {
+     "date": "2026-09-11 (Friday)",
+     "weather_condition": "Overcast",
+     "temp_max_c": 29.5,
+     "temp_min_c": 18,
+     "temp_mean_c": 23.7,
+     "precipitation_in": 0,
+     "precipitation_hours": 0,
+     "snowfall_in": 0,
+     "wind_gust_max_mph": 37.1,
+     "anomaly_flags": [
+      "Heatwave (Mean: 23.7\u00b0C vs Baseline: 15.4\u00b0C)",
+      "High Wind Gusts (37.1 mph)"
+     ]
+    },
+    {
+     "date": "2026-09-14 (Monday)",
+     "weather_condition": "Moderate Rain",
+     "temp_max_c": 17.8,
+     "temp_min_c": 10.1,
+     "temp_mean_c": 13.8,
+     "precipitation_in": 0.48,
+     "precipitation_hours": 11,
+     "snowfall_in": 0,
+     "wind_gust_max_mph": 36.2,
+     "anomaly_flags": [
+      "Sustained Rain (0.48 in over 11.0 hrs)",
+      "High Wind Gusts (36.2 mph)"
+     ]
+    },
+    {
+     "date": "2026-09-18 (Friday)",
+     "weather_condition": "Moderate Rain",
+     "temp_max_c": 16.7,
+     "temp_min_c": 14.7,
+     "temp_mean_c": 15.8,
+     "precipitation_in": 0.72,
+     "precipitation_hours": 17,
+     "snowfall_in": 0,
+     "wind_gust_max_mph": 23.7,
+     "anomaly_flags": [
+      "Heavy Rain (0.72 in)"
+     ]
+    },
+    {
+     "date": "2026-09-19 (Saturday)",
+     "weather_condition": "Light Drizzle",
+     "temp_max_c": 17.2,
+     "temp_min_c": 13.4,
+     "temp_mean_c": 15.5,
+     "precipitation_in": 0.08,
+     "precipitation_hours": 13,
+     "snowfall_in": 0,
+     "wind_gust_max_mph": 20.8,
+     "anomaly_flags": [
+      "Sustained Rain (0.08 in over 13.0 hrs)"
+     ]
+    },
+    {
+     "date": "2026-09-26 (Saturday)",
+     "weather_condition": "Moderate Drizzle",
+     "temp_max_c": 16.6,
+     "temp_min_c": 14.2,
+     "temp_mean_c": 15.5,
+     "precipitation_in": 0.11,
+     "precipitation_hours": 7,
+     "snowfall_in": 0,
+     "wind_gust_max_mph": 23.7,
+     "anomaly_flags": [
+      "Sustained Rain (0.11 in over 7.0 hrs)"
+     ]
+    },
+    {
+     "date": "2026-09-27 (Sunday)",
+     "weather_condition": "Slight Rain",
+     "temp_max_c": 20.3,
+     "temp_min_c": 14.1,
+     "temp_mean_c": 17.3,
+     "precipitation_in": 0.35,
+     "precipitation_hours": 11,
+     "snowfall_in": 0,
+     "wind_gust_max_mph": 12.1,
+     "anomaly_flags": [
+      "Sustained Rain (0.35 in over 11.0 hrs)"
+     ]
+    }
+   ]
+  },
+  "Houston": {
+   "store_id": "S005",
+   "latitude": 29.7988,
+   "longitude": -95.3984,
+   "analysis_period": "2026-09-11 to 2026-10-23",
+   "baseline_mean_temp_c": 26.5,
+   "total_anomalous_days": 21,
+   "total_rain_days": 17,
+   "total_snow_days": 0,
+   "key_storm_dates": [
+    "2026-09-11",
+    "2026-09-14",
+    "2026-09-15",
+    "2026-09-16",
+    "2026-09-17",
+    "2026-09-21",
+    "2026-09-29",
+    "2026-09-30",
+    "2026-10-01",
+    "2026-10-02",
+    "2026-10-03",
+    "2026-10-04",
+    "2026-10-05",
+    "2026-10-12",
+    "2026-10-13",
+    "2026-10-14",
+    "2026-10-16",
+    "2026-10-17",
+    "2026-10-18",
+    "2026-10-19",
+    "2026-10-20"
+   ],
+   "anomalous_daily_records": [
+    {
+     "date": "2026-09-11 (Friday)",
+     "weather_condition": "Moderate Rain",
+     "temp_max_c": 31.3,
+     "temp_min_c": 23.9,
+     "temp_mean_c": 26.9,
+     "precipitation_in": 0.51,
+     "precipitation_hours": 12,
+     "snowfall_in": 0,
+     "wind_gust_max_mph": 24.6,
+     "anomaly_flags": [
+      "Heavy Rain (0.51 in)"
+     ]
+    },
+    {
+     "date": "2026-09-14 (Monday)",
+     "weather_condition": "Dense Drizzle",
+     "temp_max_c": 34.2,
+     "temp_min_c": 25.1,
+     "temp_mean_c": 29.8,
+     "precipitation_in": 0.07,
+     "precipitation_hours": 5,
+     "snowfall_in": 0,
+     "wind_gust_max_mph": 32.9,
+     "anomaly_flags": [
+      "Sustained Rain (0.07 in over 5.0 hrs)"
+     ]
+    },
+    {
+     "date": "2026-09-15 (Tuesday)",
+     "weather_condition": "Slight Rain",
+     "temp_max_c": 36.4,
+     "temp_min_c": 25.4,
+     "temp_mean_c": 30.5,
+     "precipitation_in": 0.17,
+     "precipitation_hours": 6,
+     "snowfall_in": 0,
+     "wind_gust_max_mph": 20.8,
+     "anomaly_flags": [
+      "Sustained Rain (0.17 in over 6.0 hrs)"
+     ]
+    },
+    {
+     "date": "2026-09-16 (Wednesday)",
+     "weather_condition": "Moderate Drizzle",
+     "temp_max_c": 34.4,
+     "temp_min_c": 25.5,
+     "temp_mean_c": 30,
+     "precipitation_in": 0.07,
+     "precipitation_hours": 7,
+     "snowfall_in": 0,
+     "wind_gust_max_mph": 18.1,
+     "anomaly_flags": [
+      "Sustained Rain (0.07 in over 7.0 hrs)"
+     ]
+    },
+    {
+     "date": "2026-09-17 (Thursday)",
+     "weather_condition": "Moderate Rain",
+     "temp_max_c": 31,
+     "temp_min_c": 24.7,
+     "temp_mean_c": 28.1,
+     "precipitation_in": 0.25,
+     "precipitation_hours": 5,
+     "snowfall_in": 0,
+     "wind_gust_max_mph": 22.8,
+     "anomaly_flags": [
+      "Sustained Rain (0.25 in over 5.0 hrs)"
+     ]
+    },
+    {
+     "date": "2026-09-21 (Monday)",
+     "weather_condition": "Slight Rain",
+     "temp_max_c": 35.1,
+     "temp_min_c": 25,
+     "temp_mean_c": 29.4,
+     "precipitation_in": 0.07,
+     "precipitation_hours": 4,
+     "snowfall_in": 0,
+     "wind_gust_max_mph": 21.3,
+     "anomaly_flags": [
+      "Sustained Rain (0.07 in over 4.0 hrs)"
+     ]
+    }
+   ]
+  },
+  "Kansas City": {
+   "store_id": "S023",
+   "latitude": 39.091,
+   "longitude": -94.583,
+   "analysis_period": "2026-09-11 to 2026-10-23",
+   "baseline_mean_temp_c": 20.2,
+   "total_anomalous_days": 22,
+   "total_rain_days": 13,
+   "total_snow_days": 0,
+   "key_storm_dates": [
+    "2026-09-12",
+    "2026-09-15",
+    "2026-09-16",
+    "2026-09-17",
+    "2026-09-18",
+    "2026-09-19",
+    "2026-09-20",
+    "2026-09-25",
+    "2026-09-26",
+    "2026-09-27",
+    "2026-09-29",
+    "2026-09-30",
+    "2026-10-01",
+    "2026-10-12",
+    "2026-10-13",
+    "2026-10-14",
+    "2026-10-15",
+    "2026-10-16",
+    "2026-10-17",
+    "2026-10-18",
+    "2026-10-19",
+    "2026-10-20"
+   ],
+   "anomalous_daily_records": [
+    {
+     "date": "2026-09-12 (Saturday)",
+     "weather_condition": "Slight Rain",
+     "temp_max_c": 27.1,
+     "temp_min_c": 19.3,
+     "temp_mean_c": 22.8,
+     "precipitation_in": 0.07,
+     "precipitation_hours": 4,
+     "snowfall_in": 0,
+     "wind_gust_max_mph": 24.4,
+     "anomaly_flags": [
+      "Sustained Rain (0.07 in over 4.0 hrs)"
+     ]
+    },
+    {
+     "date": "2026-09-15 (Tuesday)",
+     "weather_condition": "Slight Rain",
+     "temp_max_c": 33.8,
+     "temp_min_c": 21.5,
+     "temp_mean_c": 27.9,
+     "precipitation_in": 0.2,
+     "precipitation_hours": 8,
+     "snowfall_in": 0,
+     "wind_gust_max_mph": 29.1,
+     "anomaly_flags": [
+      "Sustained Rain (0.20 in over 8.0 hrs)",
+      "Heatwave (Mean: 27.9\u00b0C vs Baseline: 20.2\u00b0C)"
+     ]
+    },
+    {
+     "date": "2026-09-16 (Wednesday)",
+     "weather_condition": "Moderate Rain",
+     "temp_max_c": 31,
+     "temp_min_c": 20.3,
+     "temp_mean_c": 25.1,
+     "precipitation_in": 0.33,
+     "precipitation_hours": 8,
+     "snowfall_in": 0,
+     "wind_gust_max_mph": 20.6,
+     "anomaly_flags": [
+      "Sustained Rain (0.33 in over 8.0 hrs)"
+     ]
+    },
+    {
+     "date": "2026-09-17 (Thursday)",
+     "weather_condition": "Mainly Clear",
+     "temp_max_c": 33.4,
+     "temp_min_c": 24.5,
+     "temp_mean_c": 28.7,
+     "precipitation_in": 0,
+     "precipitation_hours": 0,
+     "snowfall_in": 0,
+     "wind_gust_max_mph": 15.2,
+     "anomaly_flags": [
+      "Heatwave (Mean: 28.7\u00b0C vs Baseline: 20.2\u00b0C)"
+     ]
+    },
+    {
+     "date": "2026-09-18 (Friday)",
+     "weather_condition": "Moderate Drizzle",
+     "temp_max_c": 36.1,
+     "temp_min_c": 23.1,
+     "temp_mean_c": 29.6,
+     "precipitation_in": 0.04,
+     "precipitation_hours": 3,
+     "snowfall_in": 0,
+     "wind_gust_max_mph": 24.6,
+     "anomaly_flags": [
+      "Heatwave (Mean: 29.6\u00b0C vs Baseline: 20.2\u00b0C)"
+     ]
+    },
+    {
+     "date": "2026-09-19 (Saturday)",
+     "weather_condition": "Dense Drizzle",
+     "temp_max_c": 34.1,
+     "temp_min_c": 22.2,
+     "temp_mean_c": 28.5,
+     "precipitation_in": 0.07,
+     "precipitation_hours": 3,
+     "snowfall_in": 0,
+     "wind_gust_max_mph": 34.9,
+     "anomaly_flags": [
+      "Heatwave (Mean: 28.5\u00b0C vs Baseline: 20.2\u00b0C)"
+     ]
+    }
+   ]
+  },
+  "Columbus": {
+   "store_id": "S021",
+   "latitude": 39.978,
+   "longitude": -83.003,
+   "analysis_period": "2026-09-11 to 2026-10-23",
+   "baseline_mean_temp_c": 17.1,
+   "total_anomalous_days": 18,
+   "total_rain_days": 14,
+   "total_snow_days": 0,
+   "key_storm_dates": [
+    "2026-09-11",
+    "2026-09-12",
+    "2026-09-13",
+    "2026-09-16",
+    "2026-09-17",
+    "2026-09-18",
+    "2026-09-19",
+    "2026-09-20",
+    "2026-09-21",
+    "2026-09-23",
+    "2026-10-02",
+    "2026-10-10",
+    "2026-10-11",
+    "2026-10-14",
+    "2026-10-16",
+    "2026-10-17",
+    "2026-10-18",
+    "2026-10-19"
+   ],
+   "anomalous_daily_records": [
+    {
+     "date": "2026-09-11 (Friday)",
+     "weather_condition": "Overcast",
+     "temp_max_c": 27.1,
+     "temp_min_c": 18.2,
+     "temp_mean_c": 22.8,
+     "precipitation_in": 0,
+     "precipitation_hours": 0,
+     "snowfall_in": 0,
+     "wind_gust_max_mph": 12.8,
+     "anomaly_flags": [
+      "Heatwave (Mean: 22.8\u00b0C vs Baseline: 17.1\u00b0C)"
+     ]
+    },
+    {
+     "date": "2026-09-12 (Saturday)",
+     "weather_condition": "Moderate Rain",
+     "temp_max_c": 26,
+     "temp_min_c": 19.5,
+     "temp_mean_c": 21.9,
+     "precipitation_in": 0.57,
+     "precipitation_hours": 9,
+     "snowfall_in": 0,
+     "wind_gust_max_mph": 15.2,
+     "anomaly_flags": [
+      "Heavy Rain (0.57 in)"
+     ]
+    },
+    {
+     "date": "2026-09-13 (Sunday)",
+     "weather_condition": "Slight Rain",
+     "temp_max_c": 30.2,
+     "temp_min_c": 19.4,
+     "temp_mean_c": 23.1,
+     "precipitation_in": 0.11,
+     "precipitation_hours": 5,
+     "snowfall_in": 0,
+     "wind_gust_max_mph": 22.1,
+     "anomaly_flags": [
+      "Sustained Rain (0.11 in over 5.0 hrs)",
+      "Heatwave (Mean: 23.1\u00b0C vs Baseline: 17.1\u00b0C)"
+     ]
+    },
+    {
+     "date": "2026-09-16 (Wednesday)",
+     "weather_condition": "Slight Rain",
+     "temp_max_c": 30.6,
+     "temp_min_c": 21.3,
+     "temp_mean_c": 25.3,
+     "precipitation_in": 0.21,
+     "precipitation_hours": 11,
+     "snowfall_in": 0,
+     "wind_gust_max_mph": 21.7,
+     "anomaly_flags": [
+      "Sustained Rain (0.21 in over 11.0 hrs)",
+      "Heatwave (Mean: 25.3\u00b0C vs Baseline: 17.1\u00b0C)"
+     ]
+    },
+    {
+     "date": "2026-09-17 (Thursday)",
+     "weather_condition": "Slight Rain",
+     "temp_max_c": 28.9,
+     "temp_min_c": 21.6,
+     "temp_mean_c": 24.6,
+     "precipitation_in": 0.28,
+     "precipitation_hours": 12,
+     "snowfall_in": 0,
+     "wind_gust_max_mph": 20.4,
+     "anomaly_flags": [
+      "Sustained Rain (0.28 in over 12.0 hrs)",
+      "Heatwave (Mean: 24.6\u00b0C vs Baseline: 17.1\u00b0C)"
+     ]
+    },
+    {
+     "date": "2026-09-18 (Friday)",
+     "weather_condition": "Moderate Rain",
+     "temp_max_c": 24.7,
+     "temp_min_c": 18.8,
+     "temp_mean_c": 22.4,
+     "precipitation_in": 0.4,
+     "precipitation_hours": 4,
+     "snowfall_in": 0,
+     "wind_gust_max_mph": 14.1,
+     "anomaly_flags": [
+      "Sustained Rain (0.40 in over 4.0 hrs)"
+     ]
+    }
+   ]
+  },
+  "Cary": {
+   "store_id": "S022",
+   "latitude": 35.7915,
+   "longitude": -78.7811,
+   "analysis_period": "2026-09-11 to 2026-10-23",
+   "baseline_mean_temp_c": 20,
+   "total_anomalous_days": 20,
+   "total_rain_days": 11,
+   "total_snow_days": 0,
+   "key_storm_dates": [
+    "2026-09-11",
+    "2026-09-12",
+    "2026-09-13",
+    "2026-09-14",
+    "2026-09-18",
+    "2026-09-21",
+    "2026-09-22",
+    "2026-09-23",
+    "2026-09-24",
+    "2026-10-03",
+    "2026-10-04",
+    "2026-10-10",
+    "2026-10-11",
+    "2026-10-17",
+    "2026-10-18",
+    "2026-10-19",
+    "2026-10-20",
+    "2026-10-21",
+    "2026-10-22",
+    "2026-10-23"
+   ],
+   "anomalous_daily_records": [
+    {
+     "date": "2026-09-11 (Friday)",
+     "weather_condition": "Light Drizzle",
+     "temp_max_c": 34.8,
+     "temp_min_c": 22.9,
+     "temp_mean_c": 27.9,
+     "precipitation_in": 0.01,
+     "precipitation_hours": 2,
+     "snowfall_in": 0,
+     "wind_gust_max_mph": 17.2,
+     "anomaly_flags": [
+      "Heatwave (Mean: 27.9\u00b0C vs Baseline: 20.0\u00b0C)"
+     ]
+    },
+    {
+     "date": "2026-09-12 (Saturday)",
+     "weather_condition": "Dense Drizzle",
+     "temp_max_c": 31,
+     "temp_min_c": 22.3,
+     "temp_mean_c": 25.4,
+     "precipitation_in": 0.11,
+     "precipitation_hours": 10,
+     "snowfall_in": 0,
+     "wind_gust_max_mph": 17.4,
+     "anomaly_flags": [
+      "Sustained Rain (0.11 in over 10.0 hrs)"
+     ]
+    },
+    {
+     "date": "2026-09-13 (Sunday)",
+     "weather_condition": "Slight Rain",
+     "temp_max_c": 31.2,
+     "temp_min_c": 22,
+     "temp_mean_c": 26.2,
+     "precipitation_in": 0.12,
+     "precipitation_hours": 9,
+     "snowfall_in": 0,
+     "wind_gust_max_mph": 17.9,
+     "anomaly_flags": [
+      "Sustained Rain (0.12 in over 9.0 hrs)",
+      "Heatwave (Mean: 26.2\u00b0C vs Baseline: 20.0\u00b0C)"
+     ]
+    },
+    {
+     "date": "2026-09-14 (Monday)",
+     "weather_condition": "Light Drizzle",
+     "temp_max_c": 31.9,
+     "temp_min_c": 21.9,
+     "temp_mean_c": 26.3,
+     "precipitation_in": 0.01,
+     "precipitation_hours": 1,
+     "snowfall_in": 0,
+     "wind_gust_max_mph": 21,
+     "anomaly_flags": [
+      "Heatwave (Mean: 26.3\u00b0C vs Baseline: 20.0\u00b0C)"
+     ]
+    },
+    {
+     "date": "2026-09-18 (Friday)",
+     "weather_condition": "Moderate Rain",
+     "temp_max_c": 33.3,
+     "temp_min_c": 22.1,
+     "temp_mean_c": 25.9,
+     "precipitation_in": 0.2,
+     "precipitation_hours": 8,
+     "snowfall_in": 0,
+     "wind_gust_max_mph": 26.4,
+     "anomaly_flags": [
+      "Sustained Rain (0.20 in over 8.0 hrs)",
+      "Heatwave (Mean: 25.9\u00b0C vs Baseline: 20.0\u00b0C)"
+     ]
+    },
+    {
+     "date": "2026-09-21 (Monday)",
+     "weather_condition": "Moderate Drizzle",
+     "temp_max_c": 32.3,
+     "temp_min_c": 20.9,
+     "temp_mean_c": 25.9,
+     "precipitation_in": 0.03,
+     "precipitation_hours": 3,
+     "snowfall_in": 0,
+     "wind_gust_max_mph": 13.2,
+     "anomaly_flags": [
+      "Heatwave (Mean: 25.9\u00b0C vs Baseline: 20.0\u00b0C)"
+     ]
+    }
+   ]
+  }
+ },
+ "reviews": {
+  "Dallas": {
+   "place_id": "sample-dallas",
+   "display_name": "Uptown Kitchen",
+   "rating": 3.67,
+   "user_rating_count": 412,
+   "recent_reviews": [
+    {
+     "author_name": "Marcus T.",
+     "rating": 2.0,
+     "relative_time": "1 week ago",
+     "text": "Second time this month my order was missing a side. Food itself was good when it all showed up."
+    },
+    {
+     "author_name": "Priya S.",
+     "rating": 4.0,
+     "relative_time": "2 weeks ago",
+     "text": "Great flavors and the bowls are huge. Delivery ran a bit late during the storms."
+    },
+    {
+     "author_name": "Jordan K.",
+     "rating": 2.0,
+     "relative_time": "3 weeks ago",
+     "text": "Wrong drink and no sauce. Called and they refunded, but it keeps happening."
+    },
+    {
+     "author_name": "Elena R.",
+     "rating": 5.0,
+     "relative_time": "4 weeks ago",
+     "text": "Love being able to order from three brands at once. Everything was hot."
+    },
+    {
+     "author_name": "Chris D.",
+     "rating": 3.0,
+     "relative_time": "5 weeks ago",
+     "text": "Pricey for what you get compared to the places down the street."
+    }
+   ]
+  },
+  "Naperville": {
+   "place_id": "sample-naperville",
+   "display_name": "Naperville Kitchen",
+   "rating": 4.33,
+   "user_rating_count": 288,
+   "recent_reviews": [
+    {
+     "author_name": "Amy L.",
+     "rating": 3.0,
+     "relative_time": "1 week ago",
+     "text": "Waited almost 40 minutes for pickup. Food was great once it came out."
+    },
+    {
+     "author_name": "Ben W.",
+     "rating": 2.0,
+     "relative_time": "2 weeks ago",
+     "text": "They were out of two items I ordered and didn't tell me until I got there."
+    },
+    {
+     "author_name": "Sofia G.",
+     "rating": 5.0,
+     "relative_time": "3 weeks ago",
+     "text": "Best tacos in the area, fresh and well packed."
+    },
+    {
+     "author_name": "Dan P.",
+     "rating": 4.0,
+     "relative_time": "5 weeks ago",
+     "text": "Solid food, the app ordering is easy. Missing utensils again though."
+    }
+   ]
+  },
+  "Tempe": {
+   "place_id": "sample-tempe",
+   "display_name": "Tempe Kitchen",
+   "rating": 4.1,
+   "user_rating_count": 356,
+   "recent_reviews": [
+    {
+     "author_name": "Kayla M.",
+     "rating": 3.0,
+     "relative_time": "1 week ago",
+     "text": "Food is good but the wait has gotten long, 35+ minutes on a Tuesday."
+    },
+    {
+     "author_name": "Ryan H.",
+     "rating": 2.0,
+     "relative_time": "2 weeks ago",
+     "text": "Missing the side salad and the order took forever."
+    },
+    {
+     "author_name": "Ana V.",
+     "rating": 4.0,
+     "relative_time": "3 weeks ago",
+     "text": "Good portions. A little expensive for a student budget."
+    },
+    {
+     "author_name": "Luis C.",
+     "rating": 5.0,
+     "relative_time": "4 weeks ago",
+     "text": "Chicken sandwich was excellent and still crispy on arrival."
+    }
+   ]
+  },
+  "Edina": {
+   "place_id": "sample-edina",
+   "display_name": "Edina Kitchen",
+   "rating": 4.29,
+   "user_rating_count": 241,
+   "recent_reviews": [
+    {
+     "author_name": "Megan F.",
+     "rating": 3.0,
+     "relative_time": "1 week ago",
+     "text": "Ordered the special and it was sold out. Swapped to something else that was fine."
+    },
+    {
+     "author_name": "Tom B.",
+     "rating": 4.0,
+     "relative_time": "2 weeks ago",
+     "text": "Consistently tasty. Prices crept up a bit this fall."
+    },
+    {
+     "author_name": "Grace N.",
+     "rating": 2.0,
+     "relative_time": "3 weeks ago",
+     "text": "Missing an entree and had to call. Credit took a few days."
+    },
+    {
+     "author_name": "Henry O.",
+     "rating": 5.0,
+     "relative_time": "5 weeks ago",
+     "text": "Great family dinner option, kids love the pizza."
+    }
+   ]
+  },
+  "Houston": {
+   "place_id": "sample-houston",
+   "display_name": "Heights Kitchen",
+   "rating": 4.31,
+   "user_rating_count": 397,
+   "recent_reviews": [
+    {
+     "author_name": "Jasmine W.",
+     "rating": 3.0,
+     "relative_time": "1 week ago",
+     "text": "Pickup took 35 minutes even though the app said 15."
+    },
+    {
+     "author_name": "Carlos M.",
+     "rating": 4.0,
+     "relative_time": "2 weeks ago",
+     "text": "Really good food. Feels a little pricey for weeknight dinner."
+    },
+    {
+     "author_name": "Brian S.",
+     "rating": 2.0,
+     "relative_time": "3 weeks ago",
+     "text": "Drink was wrong and fries were missing."
+    },
+    {
+     "author_name": "Leah T.",
+     "rating": 5.0,
+     "relative_time": "4 weeks ago",
+     "text": "Everything hot and correct, fast delivery."
+    }
+   ]
+  },
+  "Kansas City": {
+   "place_id": "sample-kansas-city",
+   "display_name": "Crossroads Kitchen",
+   "rating": 4.35,
+   "user_rating_count": 203,
+   "recent_reviews": [
+    {
+     "author_name": "Nate R.",
+     "rating": 3.0,
+     "relative_time": "1 week ago",
+     "text": "Burger was overcooked and missing the side I paid for."
+    },
+    {
+     "author_name": "Olivia J.",
+     "rating": 5.0,
+     "relative_time": "2 weeks ago",
+     "text": "Fresh, flavorful, and the staff is friendly."
+    },
+    {
+     "author_name": "Sam E.",
+     "rating": 3.0,
+     "relative_time": "4 weeks ago",
+     "text": "Taste is fine, not as good as when it first opened."
+    },
+    {
+     "author_name": "Kim A.",
+     "rating": 4.0,
+     "relative_time": "5 weeks ago",
+     "text": "Good variety, a couple of errors lately with sauces."
+    }
+   ]
+  },
+  "Columbus": {
+   "place_id": "sample-columbus",
+   "display_name": "Short North Kitchen",
+   "rating": 3.85,
+   "user_rating_count": 318,
+   "recent_reviews": [
+    {
+     "author_name": "Tyler B.",
+     "rating": 2.0,
+     "relative_time": "1 week ago",
+     "text": "Half my order was out of stock and the wait was 40 minutes."
+    },
+    {
+     "author_name": "Hannah L.",
+     "rating": 3.0,
+     "relative_time": "2 weeks ago",
+     "text": "Wrong item again. The food is good when it is right."
+    },
+    {
+     "author_name": "Omar Z.",
+     "rating": 4.0,
+     "relative_time": "3 weeks ago",
+     "text": "Great late-night option near campus."
+    },
+    {
+     "author_name": "Rachel P.",
+     "rating": 2.0,
+     "relative_time": "5 weeks ago",
+     "text": "Long wait and cold fries. Expected better."
+    }
+   ]
+  },
+  "Cary": {
+   "place_id": "sample-cary",
+   "display_name": "Cary Kitchen",
+   "rating": 4.69,
+   "user_rating_count": 176,
+   "recent_reviews": [
+    {
+     "author_name": "Linda K.",
+     "rating": 5.0,
+     "relative_time": "1 week ago",
+     "text": "Delicious and the packaging keeps everything fresh."
+    },
+    {
+     "author_name": "Steve M.",
+     "rating": 4.0,
+     "relative_time": "2 weeks ago",
+     "text": "Great food but on the expensive side for the portion."
+    },
+    {
+     "author_name": "Paula D.",
+     "rating": 3.0,
+     "relative_time": "3 weeks ago",
+     "text": "Missing a side and one item was unavailable."
+    },
+    {
+     "author_name": "Greg H.",
+     "rating": 5.0,
+     "relative_time": "4 weeks ago",
+     "text": "Best salad bowls around, always consistent."
+    }
+   ]
+  }
+ },
+ "macro_labor": {
+  "fred_retail_sales": {
+   "source": "Federal Reserve Bank of St. Louis (FRED)",
+   "series_id": "RSFSDPN",
+   "series_title": "Advance Retail Sales: Food Services and Drinking Places",
+   "value_millions_usd": 101234,
+   "date": "2026-09-01",
+   "error": null
+  },
+  "bls_macro_and_labor": {
+   "source": "U.S. Bureau of Labor Statistics (BLS)",
+   "cpi_series_id": "CUUR0000SEFV",
+   "cpi_series_title": "Consumer Price Index: Food Away From Home",
+   "cpi_summary": "CPI Food Away From Home at index 398.783 (September 2026).",
+   "national_unemployment_series_id": "LNS14000000",
+   "national_unemployment_series_title": "Civilian Unemployment Rate (Seasonally Adjusted)",
+   "national_unemployment_rate": "4.2% (September 2026)",
+   "state_unemployment_rates": {
+    "AZ": {
+     "series_id": "LAUST040000000000003",
+     "series_title": "State Local Area Unemployment Statistics (LAUS) Rate",
+     "rate": "4.7% (September 2026)"
+    },
+    "IL": {
+     "series_id": "LAUST170000000000003",
+     "series_title": "State Local Area Unemployment Statistics (LAUS) Rate",
+     "rate": "4.2% (September 2026)"
+    },
+    "MN": {
+     "series_id": "LAUST270000000000003",
+     "series_title": "State Local Area Unemployment Statistics (LAUS) Rate",
+     "rate": "4.4% (September 2026)"
+    },
+    "MO": {
+     "series_id": "LAUST290000000000003",
+     "series_title": "State Local Area Unemployment Statistics (LAUS) Rate",
+     "rate": "3.3% (September 2026)"
+    },
+    "NC": {
+     "series_id": "LAUST370000000000003",
+     "series_title": "State Local Area Unemployment Statistics (LAUS) Rate",
+     "rate": "3.1% (September 2026)"
+    },
+    "OH": {
+     "series_id": "LAUST390000000000003",
+     "series_title": "State Local Area Unemployment Statistics (LAUS) Rate",
+     "rate": "3.3% (September 2026)"
+    },
+    "TX": {
+     "series_id": "LAUST480000000000003",
+     "series_title": "State Local Area Unemployment Statistics (LAUS) Rate",
+     "rate": "4.3% (September 2026)"
+    }
+   },
+   "error": null
+  },
+  "covered_states": [
+   "AZ",
+   "IL",
+   "MN",
+   "MO",
+   "NC",
+   "OH",
+   "TX"
+  ]
+ },
+ "industry_news": {
+  "total_articles_ingested": 20,
+  "articles": [
+   {
+    "title": "Bad Ass Coffee of Hawaii moves franchise system onto single tech platform",
+    "link": "https://www.fastcasual.com/news/bad-ass-coffee-of-hawaii-moves-franchise-system-onto-single-tech-platform/",
+    "published": "Fri, 23 Oct 2026 14:36:25 +0000",
+    "source": "FastCasual"
+   },
+   {
+    "title": "Sweetgreen names former Shake Shack culinary leader John Karangis executive chef",
+    "link": "https://www.fastcasual.com/news/sweetgreen-names-former-shake-shack-culinary-leader-john-karangis-executive-chef/",
+    "published": "Fri, 23 Oct 2026 12:00:00 +0000",
+    "source": "FastCasual"
+   },
+   {
+    "title": "Chicken Salad Chick CFO Drew Travis on AI site selection and the road to 500 units",
+    "link": "https://www.fastcasual.com/podcasts/chicken-salad-chick-cfo-drew-travis-on-ai-site-selection-and-the-road-to-500-units/",
+    "published": "Fri, 23 Oct 2026 10:00:00 +0000",
+    "source": "FastCasual"
+   },
+   {
+    "title": "Swig signs 14-unit deal for Southwest expansion",
+    "link": "https://www.fastcasual.com/news/swig-signs-14-unit-deal-for-southwest-expansion/",
+    "published": "Fri, 23 Oct 2026 10:00:00 +0000",
+    "source": "FastCasual"
+   },
+   {
+    "title": "How functional beverages provide new reasons to visit",
+    "link": "https://www.fastcasual.com/articles/how-functional-beverages-provide-new-reasons-to-visit/",
+    "published": "Fri, 23 Oct 2026 10:00:00 +0000",
+    "source": "FastCasual"
+   },
+   {
+    "title": "Mike\u2019s Red Tacos heads to Tampa, Orlando with 36-unit development deal",
+    "link": "https://www.fastcasual.com/news/mikes-red-tacos-heads-to-tampa-orlando-with-36-unit-development-deal/",
+    "published": "Fri, 23 Oct 2026 10:00:00 +0000",
+    "source": "FastCasual"
+   },
+   {
+    "title": "5 things your crew wants you to know about pay, bosses and AI",
+    "link": "https://www.fastcasual.com/blogs/5-things-your-crew-wants-you-to-know-about-pay-bosses-and-ai/",
+    "published": "Thu, 22 Oct 2026 14:48:35 +0000",
+    "source": "FastCasual"
+   },
+   {
+    "title": "Urban Bird expands Texas footprint, signs franchise deals in Q3",
+    "link": "https://www.fastcasual.com/news/urban-bird-expands-texas-footprint-signs-franchise-deals-in-q3/",
+    "published": "Thu, 22 Oct 2026 10:00:00 +0000",
+    "source": "FastCasual"
+   },
+   {
+    "title": "Pollo Campero names Julio Sanchez US CEO",
+    "link": "https://www.fastcasual.com/news/pollo-campero-names-julio-sanchez-us-ceo/",
+    "published": "Thu, 22 Oct 2026 10:00:00 +0000",
+    "source": "FastCasual"
+   },
+   {
+    "title": "Report: Fast casual sector still outpacing overall restaurant growth",
+    "link": "https://www.fastcasual.com/blogs/report-fast-casual-sector-still-outpacing-overall-restaurant-growth/",
+    "published": "Wed, 21 Oct 2026 10:00:00 +0000",
+    "source": "FastCasual"
+   },
+   {
+    "title": "The Big Dilla: How Maggie Gordon, co-founder of Dilla\u2019s Quesadillas, built a new brand category",
+    "link": "https://www.fastcasual.com/podcasts/the-big-dilla-how-maggie-gordon-co-founder-of-dillas-quesadillas-built-a-new-brand-category/",
+    "published": "Wed, 21 Oct 2026 10:00:00 +0000",
+    "source": "FastCasual"
+   },
+   {
+    "title": "Harlem Shake signs 75-unit franchise agreement in India",
+    "link": "https://www.fastcasual.com/news/harlem-shake-signs-75-unit-franchise-agreement-in-india/",
+    "published": "Wed, 21 Oct 2026 10:00:00 +0000",
+    "source": "FastCasual"
+   },
+   {
+    "title": "Sweetgreen refreshes beverage lineup with 2 new flavors",
+    "link": "https://www.fastcasual.com/news/sweetgreen-refreshes-beverage-lineup-with-2-new-flavors/",
+    "published": "Wed, 21 Oct 2026 10:00:00 +0000",
+    "source": "FastCasual"
+   },
+   {
+    "title": "Dirty soda: 5 ways fast casuals can cash in on the trend",
+    "link": "https://www.fastcasual.com/blogs/dirty-soda-5-ways-fast-casuals-can-cash-in-on-the-trend/",
+    "published": "Wed, 21 Oct 2026 10:00:00 +0000",
+    "source": "FastCasual"
+   },
+   {
+    "title": "Nominations open for Pizza Marketplace Top 100",
+    "link": "https://www.pizzamarketplace.com/news/nominations-open-for-pizza-marketplace-top-100/",
+    "published": "Wed, 21 Oct 2026 10:00:00 +0000",
+    "source": "FastCasual"
+   },
+   {
+    "title": "Olo app launches to 40M users",
+    "link": "https://www.qsrweb.com/articles/olo-app-launches-to-40-million-users/",
+    "published": "Tue, 20 Oct 2026 18:23:16 +0000",
+    "source": "FastCasual"
+   },
+   {
+    "title": "Naked Farmer\u2019s Jordan Johnson is growing without giving away the farm",
+    "link": "https://www.fastcasual.com/articles/naked-farmers-jordan-johnson-is-growing-without-giving-away-the-farm/",
+    "published": "Tue, 20 Oct 2026 13:14:29 +0000",
+    "source": "FastCasual"
+   },
+   {
+    "title": "Chicken Salad Chick sets Atlanta grand opening",
+    "link": "https://www.fastcasual.com/news/chicken-salad-chick-sets-atlanta-grand-opening/",
+    "published": "Tue, 20 Oct 2026 10:00:00 +0000",
+    "source": "FastCasual"
+   },
+   {
+    "title": "Tropical Smoothie Cafe signs 40-unit Northeast development deal",
+    "link": "https://www.fastcasual.com/news/tropical-smoothie-cafe-signs-40-unit-northeast-development-deal/",
+    "published": "Tue, 20 Oct 2026 10:00:00 +0000",
+    "source": "FastCasual"
+   },
+   {
+    "title": "Firehouse Subs co-founder Chris Sorensen dies at 65",
+    "link": "https://www.fastcasual.com/news/firehouse-subs-co-founder-chris-sorensen-dies-at-65/",
+    "published": "Mon, 19 Oct 2026 16:00:00 +0000",
+    "source": "FastCasual"
+   }
+  ],
+  "parsed_sources": [
+   "QSR Magazine",
+   "FastCasual",
+   "Restaurant Dive"
+  ]
+ },
+ "local_news": {
+  "Dallas": [
+   {
+    "title": "Uptown restaurant row adds three fast-casual openings this fall",
+    "source": "Dallas Observer",
+    "published": "2026-10-08",
+    "city": "Dallas"
+   },
+   {
+    "title": "Flash flooding closes McKinney Avenue lanes during early October storms",
+    "source": "Dallas Morning News",
+    "published": "2026-10-02",
+    "city": "Dallas"
+   }
+  ],
+  "Naperville": [
+   {
+    "title": "Downtown Naperville parking garage closes for repairs through November",
+    "source": "Naperville Sun",
+    "published": "2026-10-05",
+    "city": "Naperville"
+   }
+  ],
+  "Tempe": [
+   {
+    "title": "ASU fall enrollment hits record, boosting late-night dining demand",
+    "source": "Phoenix New Times",
+    "published": "2026-09-22",
+    "city": "Tempe"
+   },
+   {
+    "title": "New food hall opens on Mill Avenue with 12 vendors",
+    "source": "Eater Phoenix",
+    "published": "2026-10-12",
+    "city": "Tempe"
+   }
+  ],
+  "Edina": [
+   {
+    "title": "Southdale area welcomes two national pizza chains",
+    "source": "Star Tribune",
+    "published": "2026-10-01",
+    "city": "Edina"
+   }
+  ],
+  "Houston": [
+   {
+    "title": "Heights dining scene grows with four new openings on 19th Street",
+    "source": "Eater Houston",
+    "published": "2026-09-30",
+    "city": "Houston"
+   },
+   {
+    "title": "Heavy rain and street flooding disrupt deliveries across inner loop",
+    "source": "Houston Chronicle",
+    "published": "2026-10-03",
+    "city": "Houston"
+   }
+  ],
+  "Kansas City": [
+   {
+    "title": "Crossroads district road work slows evening traffic through October",
+    "source": "Kansas City Star",
+    "published": "2026-09-25",
+    "city": "Kansas City"
+   }
+  ],
+  "Columbus": [
+   {
+    "title": "Short North sees surge of late-night delivery competition near campus",
+    "source": "Columbus Dispatch",
+    "published": "2026-10-09",
+    "city": "Columbus"
+   }
+  ],
+  "Cary": [
+   {
+    "title": "Cary town center redevelopment brings new restaurant tenants",
+    "source": "News & Observer",
+    "published": "2026-10-14",
+    "city": "Cary"
+   }
+  ]
+ }
+}

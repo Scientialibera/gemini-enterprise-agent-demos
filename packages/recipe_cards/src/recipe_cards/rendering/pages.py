@@ -1,0 +1,77 @@
+"""Assemble recipe decks from independently maintained page layouts."""
+
+from __future__ import annotations
+
+import tempfile
+from pathlib import Path
+from typing import Any
+
+from pptx import Presentation
+from pptx.util import Inches
+
+from ..schema import load_recipes
+from .assets import asset_context
+from .customizations import add_customization_slides
+from .ingredients import add_ingredient_continuation_slides
+from .overview import add_overview_slide
+from .steps import add_steps_slide, customizations_inline, paginate_steps
+from .theme import (
+    PAGE_H,
+    PAGE_W,
+)
+
+
+def add_recipe(prs, recipe):
+    add_overview_slide(prs, recipe)
+    ingredient_pages = add_ingredient_continuation_slides(prs, recipe)
+    steps = list(recipe.get("steps") or [])
+    layout, step_pages = paginate_steps(recipe, steps)
+    for page_index, (start, count) in enumerate(step_pages):
+        add_steps_slide(
+            prs,
+            recipe,
+            layout,
+            start,
+            count,
+            is_last=page_index == len(step_pages) - 1,
+            page_number=page_index + ingredient_pages + 2,
+        )
+    # Customizations short enough are written out in the variations panel;
+    # only a longer set needs pages of its own.
+    if not customizations_inline(recipe):
+        add_customization_slides(prs, recipe)
+
+
+def build_pptx(data: dict[str, Any], output: str) -> None:
+    """Write the deck for every recipe in ``data`` to ``output``."""
+    prs = Presentation()
+    prs.slide_width = Inches(PAGE_W)
+    prs.slide_height = Inches(PAGE_H)
+
+    # Remove the default first slide if present (normally Presentation() has none).
+    while len(prs.slides) > 0:
+        r_id = prs.slides._sldIdLst[0].rId
+        prs.part.drop_rel(r_id)
+        del prs.slides._sldIdLst[0]
+
+    recipes = data.get("recipes") or []
+    if not recipes:
+        raise ValueError("Input contains no recipes.")
+
+    for recipe in recipes:
+        add_recipe(prs, recipe)
+
+    Path(output).parent.mkdir(parents=True, exist_ok=True)
+    prs.save(output)
+
+
+def render_deck(data: dict[str, Any], project_id: str, *, bucket: str = "") -> bytes:
+    """Render validated content, resolving images against the card store."""
+    data = load_recipes(data)
+    with (
+        tempfile.TemporaryDirectory(prefix="recipe-card-") as work_dir,
+        asset_context(data, project_id, work_dir, bucket),
+    ):
+        output = Path(work_dir) / "recipe_cards.pptx"
+        build_pptx(data, str(output))
+        return output.read_bytes()

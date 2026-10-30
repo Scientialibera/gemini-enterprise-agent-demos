@@ -1,0 +1,12 @@
+# Google Reviews Agent Configuration
+api:
+  places_search_url: "https://places.googleapis.com/v1/places:searchText"
+  field_mask: "places.id,places.displayName,places.rating,places.userRatingCount,places.reviews.name,places.reviews.rating,places.reviews.text,places.reviews.publishTime,places.reviews.relativePublishTimeDescription,places.reviews.authorAttribution"
+  timeout_seconds: 6
+  max_workers: 10
+
+search:
+  brand_prefix: ""
+  brand_to_strip: ""
+  location_bias_radius_meters: 2000.0
+  date_window_days: 60

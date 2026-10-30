@@ -1,0 +1,72 @@
+# Report Generation Agent Configuration
+storage:
+  target_folder_id: ""  # set per environment: GROWTH_REPORT_FOLDER_ID
+  doc_title_prefix: "Store Performance Diagnostic"
+
+page_style:
+  orientation: "landscape"
+  width_pt: 792
+  height_pt: 612
+  margins_pt:
+    top: 36
+    bottom: 36
+    left: 36
+    right: 36
+
+brand_palette:
+  cream_bg:
+    red: 0.961
+    green: 0.953
+    blue: 0.914
+  header_green:
+    red: 0.298
+    green: 0.706
+    blue: 0.451
+  title_green:
+    red: 0.129
+    green: 0.322
+    blue: 0.208
+  cell_bg:
+    red: 0.980
+    green: 0.976
+    blue: 0.961
+  white:
+    red: 1.0
+    green: 1.0
+    blue: 1.0
+  charcoal:
+    red: 0.133
+    green: 0.133
+    blue: 0.133
+  faded_gray:
+    red: 0.4
+    green: 0.4
+    blue: 0.4
+
+section_titles:
+  tldr_title: "Executive Summary & TL;DR Insights"
+  appendix_header: "Appendix: Deep-Dive Diagnostics & Performance Tables"
+  section_1: "Section 1: L6W SSS Negative Kitchens - 18 Mo. Cohort (Bottom 5)"
+  section_2: "Section 2: L6W SSS Negative Kitchens - 15 Mo. Cohort (Bottom 3)"
+  section_3: "Section 3: L6W SSS Positive Kitchens - 18 Mo. Cohort (Top 5)"
+  section_4_heading: "Section 4: Macro & Portfolio Insights"
+  section_4_table_subtitle: "Executive Macro & Portfolio Summary Table"
+  section_4_detailed: "Detailed Store-by-Store Diagnostic Breakdown"
+
+model_settings:
+  extraction_temperature: 0.0
+
+friendly_metric_names:
+  "Households (Geolytix)": "Addressable Households"
+  "Google Rating": "Google Rating"
+  "3P GOV % of Total GOV": "3P GOV Share"
+  "MP % of 1P App / Web": "Marketplace Mix"
+  "App / Web Traffic (1P) - Overall": "1P Digital Traffic"
+  "Conversion (1P)": "1P Conversion Rate"
+  "New Brand Mix % (Kitchen)": "New Brand Mix"
+  "In-Stock Rate %": "In-Stock Rate"
+  "O2E": "Order-to-Delivery Time"
+  "IOR % (Kitchen) Target = < 10%": "Order Issue Rate"
+  "Order Accuracy": "Order Accuracy"
+  "Taste Rating (Kitchen)": "Taste Rating"
+  "Value Rating (Kitchen)": "Value Rating"

@@ -1,0 +1,3 @@
+# Global settings for Growth Analytics Agent
+default_model: "gemini-3.7-flash"
+l6w_window_days: 42

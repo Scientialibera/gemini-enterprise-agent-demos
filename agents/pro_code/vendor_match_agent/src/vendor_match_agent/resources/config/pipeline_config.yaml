@@ -1,0 +1,132 @@
+# ==============================================================================
+# UNIFIED PIPELINE & AGENT CONFIGURATION
+# ==============================================================================
+
+# --- Orchestrator Agent Parameters ---
+orchestrator_agent:
+  name: "vendor_master_data_governor"  # agent identifier
+  model:
+    name: "gemini-2.5-flash"  # foundation model
+    temperature: 0.0  # sampling temperature
+  batching:
+    chunk_size: 1000  # records per batch chunk
+    adaptive_subchunk_threshold: 400  # record count triggering subchunking
+    adaptive_subchunk_slice_size: 350  # subchunk slice size
+    chunks_per_turn_pause: 3  # turns between approval pauses
+    session_id_length: 8  # session hash length
+  preview_limits:
+    proposed_mappings_preview: 10  # preview rows for proposed mappings
+    master_lookup_preview: 25  # preview rows for master lookup
+  approval_keywords:  # user approval keywords
+    - "approved"
+    - "approve"
+    - "yes"
+    - "confirm"
+    - "commit"
+    - "looks good"
+    - "y"
+
+# --- Resolver Agent & Pipeline Parameters ---
+resolver_agent:
+  name: "pydantic_vendor_resolver"  # resolver worker identifier
+  model:
+    name: "gemini-2.5-flash"  # resolution model
+    temperature: 0.0  # deterministic temperature
+    max_retries: 5  # max API retry attempts
+    base_retry_delay_seconds: 1.0  # base retry delay
+    rate_limit_backoff_factor: 2.5  # backoff multiplier
+    jitter_min: 0.3  # minimum jitter seconds
+    jitter_max: 1.5  # maximum jitter seconds
+  concurrency:
+    default_max_threads: 10  # worker threads
+    progress_log_interval: 25  # logging step interval
+  similarity_search:
+    max_contenders_per_vendor: 15  # maximum candidate contenders per vendor
+    min_token_length: 2  # minimum token character length for indexing
+    ranking_strategy: "token_overlap_descending"  # contender ranking method
+  fallback_hierarchy:  # resolution fallback classifications
+    p3_generic: "Inclusion Fallback - P3 Generic (Algo 3)"
+    p1_stop_words: "Inclusion Fallback - P1 Stop Words (Algo 3)"
+    p2_corporate_suffix: "Inclusion Fallback - P2 Corporate Suffix (Algo 3)"
+    safety_fallback: "Absolute Safety Fallback"
+    standard_exclusion: "Standard Exclusion (Algo 2)"
+
+# --- Google Drive & Storage Parameters ---
+drive:
+  scopes:  # OAuth scopes for Drive API
+    - "https://www.googleapis.com/auth/drive"
+  chunk_size_bytes: 10485760  # 10 MB download chunk size
+  max_retries: 3  # Drive API retry limit
+  backoff_factor: 1.5  # retry backoff multiplier
+  date_folder_format: "%Y-%m-%d"  # date folder naming format
+  session_prefix_format: "%Y%m%d_%H%M%S"  # session timestamp naming format
+  files:
+    master_dict_filename: "master_vendor_dictionary.xlsx"  # master dictionary workbook filename
+    master_sheet_name: "Master Dictionary"  # master dictionary sheet tab
+    staging_review_prefix: "_STAGING_REVIEW_"  # review workbook filename prefix
+    staging_payload_prefix: "_staged_"  # staged json cache filename prefix
+    diagnostic_sheet_name: "Contenders Diagnostic"  # diagnostic sheet tab name
+  env_folder_keys:
+    source_folder_id: "DRIVE_SOURCE_FOLDER_ID"  # env var for source drive folder
+    master_folder_id: "DRIVE_MASTER_DICT_FOLDER_ID"  # env var for master dictionary folder
+    processed_folder_id: "DRIVE_PROCESSED_FOLDER_ID"  # env var for processed archives folder
+    output_folder_id: "DRIVE_OUTPUT_FOLDER_ID"  # env var for output folder
+
+# --- Governance & Column Name Specifications ---
+governance:
+  target_columns:  # candidate header names for vendor columns
+    - "supplier name"
+    - "vendor_name"
+    - "vendor"
+    - "vendor name"
+    - "supplier"
+    - "payee"
+    - "company name"
+  column_keywords:  # fallback substring keywords for column matching
+    - "vendor"
+    - "supplier"
+    - "payee"
+    - "company name"
+    - "name"
+  master_dictionary_columns:
+    standardized_name: "Standardized Vendor Name"  # standardized parent column name
+    raw_variant: "Raw Vendor Variant"  # raw input variant column name
+  staging_review_sheet:
+    proposed_tab:
+      sheet_name: "Proposed Master Additions"  # tab for proposed additions
+      columns:
+        master_name: "Proposed Standardized Master Name"  # proposed master column header
+        raw_variants: "Resolved Raw Variants"  # resolved raw variants column header
+        variant_count: "Variant Count"  # count column header
+    matched_tab:
+      sheet_name: "Instant Dictionary Matches"  # tab for auto-matched items
+      columns:
+        master_name: "Master Dictionary Name"  # matched master column header
+        matched_variants: "Auto-Matched Input Variants"  # matched input variants header
+        variant_count: "Variant Count"  # count column header
+
+# --- Reference Data Files ---
+reference_data:
+  corporate_extensions: "data/reference/corporate_extensions.json"  # corporate suffix dictionary
+  generic_business_names: "data/reference/generic_business_names.json"  # generic business word dictionary
+  manual_exclusions: "data/reference/manual_exclusions.json"  # manual exclusion list
+  stop_words: "data/reference/stop_words.json"  # stop words dictionary
+
+# --- Legacy Compatibility Aliases ---
+pipeline:
+  chunk_size: 1000  # legacy alias for chunk size
+  max_threads: 10  # legacy alias for max worker threads
+  default_user_id: "pipeline_internal"  # fallback user id
+  master_dict_filename: "master_vendor_dictionary.xlsx"  # legacy alias for master filename
+  master_sheet_name: "Master Dictionary"  # legacy alias for master tab
+  output_filename: "master_vendor_dictionary.xlsx"  # legacy alias for output file
+  diagnostic_sheet_name: "Contenders Diagnostic"  # legacy alias for diagnostic sheet
+
+model:
+  name: "gemini-2.5-flash"  # legacy alias for model name
+  temperature: 0.0  # legacy alias for temperature
+  max_retries: 5  # legacy alias for max retries
+  base_retry_delay_seconds: 1.0  # legacy alias for base retry delay
+
+paths:
+  log_file: "vendor_pipeline.log"  # execution log file path

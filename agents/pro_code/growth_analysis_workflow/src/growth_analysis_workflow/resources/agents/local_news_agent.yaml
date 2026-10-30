@@ -1,0 +1,17 @@
+# Local News Agent Configuration
+nyt:
+  url: "https://api.nytimes.com/svc/search/v2/articlesearch.json"
+  base_query: "restaurant"
+  sort: "newest"
+  timeout_seconds: 6
+
+eater_rss_map:
+  PA: "https://philly.eater.com/rss/index.xml"
+  NY: "https://ny.eater.com/rss/index.xml"
+  NJ: "https://ny.eater.com/rss/index.xml"
+  LA: "https://la.eater.com/rss/index.xml"
+  CA: "https://la.eater.com/rss/index.xml"
+
+window_days: 42
+fallback_article_limit: 5
+max_workers: 5

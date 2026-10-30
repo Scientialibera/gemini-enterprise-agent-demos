@@ -1,0 +1,46 @@
+# Weather Analytics Agent Configuration
+api:
+  url: "https://archive-api.open-meteo.com/v1/archive"
+  timeout_seconds: 10
+  max_archival_lag_days: 2
+  default_weeks_back: 6
+  max_workers: 10
+
+thresholds:
+  rain:
+    inches_per_day: 0.50
+    duration_hours: 4.0
+    sustained_min_inches: 0.05
+  snow:
+    inches_per_day: 0.50
+  temperature:
+    unit: "celsius"
+    deviation_deg_c: 5.5
+  wind:
+    gust_mph: 35.0
+
+wmo_code_map:
+  0: "Clear Sky"
+  1: "Mainly Clear"
+  2: "Partly Cloudy"
+  3: "Overcast"
+  45: "Fog"
+  51: "Light Drizzle"
+  53: "Moderate Drizzle"
+  55: "Dense Drizzle"
+  56: "Light Freezing Drizzle"
+  57: "Dense Freezing Drizzle"
+  61: "Slight Rain"
+  63: "Moderate Rain"
+  65: "Heavy Rain"
+  66: "Light Freezing Rain"
+  67: "Heavy Freezing Rain"
+  71: "Slight Snow"
+  73: "Moderate Snow"
+  75: "Heavy Snow"
+  80: "Slight Rain Showers"
+  81: "Moderate Rain Showers"
+  82: "Violent Rain Showers"
+  95: "Thunderstorm"
+  96: "Thunderstorm with Light Hail"
+  99: "Thunderstorm with Heavy Hail"

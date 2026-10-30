@@ -1,0 +1,124 @@
+# Main deployment configuration. Copy to deployment/config.yaml (gitignored) and
+# fill it in; then `uv run --group dev python deployment/run.py` checks, seeds,
+# deploys and tests everything. Every key is listed here; unknown keys are errors.
+# No secret values belong in this file: OAuth clients point at the JSON files the
+# console downloads, and API keys and tokens live in Secret Manager (`secrets`).
+
+environment:
+  name: dev                          # dev, qa or prod. qa and prod need run.py --confirm-project
+                                     # <project_id> (or DEPLOY_CONFIRM_PROJECT) and refuse the
+                                     # sandbox-only settings; see docs/prod-runbook.md
+  project_id: REPLACE_WITH_PROJECT_ID
+  region: us-central1                # Agent Engine region
+  staging_bucket: gs://REPLACE_WITH_STAGING_BUCKET
+  staging_bucket_location:           # defaults to the region
+  create_staging_bucket: true
+  enable_required_apis: true
+  # Grant every Agent Identity the roles a runtime needs to read its own
+  # configuration. Terraform owns this in a managed environment; set true only
+  # for a sandbox brought up with these scripts alone (needs project IAM admin).
+  grant_agent_identity_baseline: false
+  create_project:
+    enabled: false
+    billing_account_id:
+    folder_id:
+    organization_id:
+
+gemini_enterprise:
+  app_id: REPLACE_WITH_ENGINE_ID      # Gemini Enterprise > Apps > ID
+  web_app_url:                       # https://vertexaisearch.cloud.google.com/home/cid/<cid>
+  bigquery_mcp_connector_id:         # only if the app has more than one BigQuery MCP connector
+  gmail_connector_id:                # only if the app has more than one Gmail connector
+
+models:
+  bootstrap_model: gemini-3.7-flash
+  model_location: global
+
+runtime:
+  parameter_location: global
+  refresh_seconds: 30
+
+# One Web OAuth client per code agent, with both Gemini Enterprise redirect URIs
+# (see docs/deployment-guide.md, step 5). Point at the JSON the console downloads;
+# its secret is imported into Secret Manager on first registration and never
+# printed. Paths are relative to this file. `client_id:` alone also works once the
+# secret is already in Secret Manager.
+oauth_clients:
+  growth_analysis_workflow:
+    client_json: secrets/growth-analysis-client.json
+  vendor_match_agent:
+    client_json: secrets/vendor-match-client.json
+  ticket_guidance_agent:
+    client_json: secrets/ticket-guidance-client.json
+
+# Secret Manager secrets the agents read. `run.py seed` creates each one that is
+# missing and, when it has no version yet, adds one from the named environment
+# variable if that is set. Values are never written to disk or printed.
+secrets:
+  growth-bls-api-key: {from_env: BLS_API_KEY}
+  growth-fred-api-key: {from_env: FRED_API_KEY}
+  growth-nyt-api-key: {from_env: NYT_API_KEY}
+  growth-google-places-api-key: {from_env: GOOGLE_PLACES_API_KEY}
+  ticket-guidance-jira-api-token: {from_env: JIRA_API_TOKEN}
+
+access_groups:                       # optional; see docs/agent-access-groups.md
+  enabled: false
+  customer_id:
+  domain:
+  owner_email:
+  prefix:
+
+agents:
+  growth_analysis_workflow:
+    spreadsheet_id:                  # filled by seed.drive when empty
+    report_folder_id: REPLACE_WITH_DRIVE_FOLDER_ID
+    # Optional, per stage, merged over the packaged settings. Use it when the sheet's
+    # headers differ from the canonical ones, or to search Google Places with a brand:
+    # settings_override:
+    #   sheet_reader_agent:
+    #     column_aliases: {"Kitchen Name": "Store", "Google Rating": "Rating (Google)"}
+    #   google_reviews_agent:
+    #     search: {brand_prefix: "<brand>", brand_to_strip: "<suffix in store names>"}
+    settings_override:
+  vendor_match_agent:
+    source_folder_id: REPLACE_WITH_DRIVE_FOLDER_ID
+    master_dictionary_folder_id: REPLACE_WITH_DRIVE_FOLDER_ID
+    processed_folder_id: REPLACE_WITH_DRIVE_FOLDER_ID
+  ticket_guidance_agent:
+    # connector: search through the Gemini Enterprise Confluence connector as the
+    # signed-in user (needs a Workspace or Cloud Identity organization).
+    # api: search Confluence as the Atlassian service account; only for a space
+    # everyone may read.
+    confluence_search_backend: connector
+    confluence_connector_id:         # connector backend only
+    confluence_space: ETSDKB
+  recipe_editorial_agent:
+    product_dataset: REPLACE_WITH_PROJECT.recipe_products
+    legacy_dataset: REPLACE_WITH_PROJECT.recipe_legacy
+  kitchen_sequencer:
+    dataset: kitchen_compliance
+    dataset_location: US
+    source_project:                  # project holding hdr_analytics; empty with sample data
+
+atlassian:                           # Ticket Guidance
+  site_url: https://REPLACE.atlassian.net
+  api_base_url:                      # defaults to site_url; a scoped token needs api.atlassian.com/ex/jira/<cloudId>
+  service_account_email: REPLACE_WITH_ATLASSIAN_SERVICE_ACCOUNT_EMAIL
+  jira_project_key: AGENT
+  jira_parent_issue_key:
+
+seed:
+  bigquery:
+    sample_data: false               # synthetic copies of the source tables (testing without real data)
+    sample_data_location: US
+    kitchen_compliance: true         # build the Kitchen Sequencer tables once
+  drive:
+    enabled: false                   # upload the sample performance sheet and vendor workbooks
+    performance_sheet_folder_id:     # defaults to the Growth report folder
+  atlassian:
+    enabled: false                   # create the KB space and sample pages; check the Jira project
+
+tests:
+  growth_full_run: true              # runs the whole Growth pipeline (several minutes) and checks the Doc
+  ticket_guidance_creates_tickets: true  # creates a real ticket and moves it to Done (dev only)
+  vendor_lookup: Sysco Corp          # a vendor in the master dictionary (the sample has this one)

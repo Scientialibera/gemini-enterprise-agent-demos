@@ -1,0 +1,13 @@
+# Diagnostic Insights Agent Configuration
+target_store_count: 5
+
+mandatory_headings:
+  - "Internal Metrics"
+  - "Customer Sentiment & Reviews"
+  - "Weather trends"
+  - "Unemployment"
+  - "QSR Trends in Region"
+  - "Fast Casual Trends"
+  - "Local news"
+  - "Local Restaurant news"
+  - "Recommendations"

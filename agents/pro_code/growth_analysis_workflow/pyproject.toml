@@ -1,0 +1,20 @@
+[project]
+name = "growth-analysis-workflow"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+  "gemini-shared[secrets]",
+  "demo-tools",
+  "feedparser>=6.0.11,<7.0.0",
+  "google-api-python-client>=2.198.0,<3.0.0",
+  "pandas>=2.0.0,<3.0.0",
+  "pyyaml>=6.0,<7.0",
+  "requests>=2.32.0,<3.0.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/growth_analysis_workflow"]

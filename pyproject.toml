@@ -1,0 +1,115 @@
+[project]
+name = "gemini-enterprise-agents"
+version = "0.1.0"
+requires-python = ">=3.12"
+
+[tool.uv.workspace]
+members = [
+  "agents/pro_code/*",
+  "packages/*",
+]
+
+[tool.uv.sources]
+gemini-shared = { workspace = true }
+demo-tools = { workspace = true }
+recipe-cards = { workspace = true }
+
+[dependency-groups]
+dev = [
+  # mcp: the shared MCP toolsets stay tested for agents that add one later.
+  "gemini-shared[mcp,secrets]",
+  "google-cloud-bigquery==3.43.0",
+  "google-cloud-secret-manager>=2.20.0,<3.0.0",
+  "markdown>=3.5,<4.0",
+  # The seed step and the requirements workbook generator write .xlsx files.
+  "openpyxl>=3.1.0,<4.0.0",
+  "python-dotenv>=1.0.1,<2.0.0",
+  "pyyaml>=6.0,<7.0",
+  "pytest>=9.0.3,<10.0.0",
+  "requests>=2.32.0,<3.0.0",
+  "ruff>=0.12.0,<1.0.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q --strict-markers"
+# Import workspace packages from source, so tests run without an editable install.
+# Add a line here when adding an agent.
+pythonpath = [
+  "deployment",
+  "packages/gemini_shared/src",
+  "agents/pro_code/ticket_guidance_agent/src",
+  "agents/pro_code/vendor_match_agent/src",
+  "agents/pro_code/growth_analysis_workflow/src",
+  "agents/pro_code/parameter_updater/src",
+  "agents/pro_code/kitchen_sequencer/src",
+  "agents/pro_code/recipe_qa_agent/src",
+  "agents/pro_code/recipe_card_agent/src",
+  "packages/demo_tools/src",
+  "packages/recipe_cards/src",
+]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "S", "SIM", "RUF"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S101"]
+"deployment/gcp.py" = ["S603"]
+"deployment/deploy/dependencies.py" = ["S603"]
+# S105 flags the environment variable name that holds the OAuth client secret
+# and the public Google token endpoint. Neither is a credential value.
+"deployment/deploy/register/register_agent.py" = ["S105", "E402"]
+# S105 flags the names of Secret Manager secrets and the secretAccessor role.
+# They identify where a secret lives; no value is in the repository.
+"deployment/registry.py" = ["S105"]
+# The secret's name, not a value.
+"packages/demo_tools/src/demo_tools/mailer.py" = ["S105"]
+# Glyph substitutions list the look-alike characters on purpose; colours are immutable.
+"packages/demo_tools/src/demo_tools/pdf.py" = ["RUF001", "RUF009"]
+# Values are validated against strict patterns first, and run_readonly_query allows
+# only a SELECT on the recipe datasets.
+"agents/pro_code/recipe_qa_agent/src/recipe_qa_agent/data.py" = ["S608"]
+"agents/pro_code/ticket_guidance_agent/src/ticket_guidance_agent/config.py" = ["S105"]
+# E402: these scripts run directly as well as being imported, so they put deployment/
+# on sys.path before importing anything from it.
+"deployment/deploy/*.py" = ["E402"]
+"deployment/config/bootstrap_dev.py" = ["E402"]
+"deployment/deploy/iam/*.py" = ["E402"]
+"deployment/deploy/no_code/deploy_no_code.py" = ["E402"]
+"deployment/deploy/no_code/create_mcp_connector.py" = ["E402"]
+# Sample data uses a seeded generator so it is reproducible; it is not a secret.
+"deployment/seed/sample_*.py" = ["E501", "S311"]
+# The requirements workbook generator is mostly requirement text, kept one row per entry.
+"docs/requirements/build_requirements.py" = ["E501"]
+# Business logic ported from the original agents is kept close to its original
+# form so behaviour can be compared line by line; it is formatted but not
+# restyled. New code in these packages follows the full rule set.
+"agents/pro_code/vendor_match_agent/src/vendor_match_agent/standardization_pipeline/*.py" = [
+  "B", "E402", "E501", "RUF", "S", "SIM", "UP",
+]
+"agents/pro_code/vendor_match_agent/src/vendor_match_agent/utils/*.py" = [
+  "B", "E402", "E501", "RUF", "S", "SIM", "UP",
+]
+"agents/pro_code/vendor_match_agent/src/vendor_match_agent/tools/orchestration_tools.py" = [
+  "B", "E501", "RUF", "S", "SIM", "UP",
+]
+"agents/pro_code/vendor_match_agent/src/vendor_match_agent/tools/drive_tools.py" = ["B", "E501", "S", "SIM", "UP"]
+"agents/pro_code/vendor_match_agent/src/vendor_match_agent/pipeline_config.py" = ["E501", "UP"]
+# The card renderer degrades a missing or unreadable image to a placeholder
+# rather than losing the whole deck, so these handlers are deliberately silent.
+# E501 covers the layout tables, which stay readable as single lines.
+"packages/recipe_cards/src/recipe_cards/rendering/*.py" = [
+  "E501",
+  "S110",
+  "S112",
+  "SIM105",
+]
+# Growth Analytics V2 is the dev team's code, kept
+# close to their files so a new drop from them diffs cleanly.
+"agents/pro_code/growth_analysis_workflow/src/growth_analysis_workflow/{models,tools,utils}/**/*.py" = [
+  "B", "E402", "E501", "RUF", "S", "SIM", "UP",
+]

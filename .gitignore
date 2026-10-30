@@ -1,0 +1,60 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+build/
+dist/
+*.egg-info/
+*.log
+
+.env
+.env.*
+!deployment/.env.local.example
+
+.idea/
+.vscode/
+*.swp
+*.tmp
+
+deployment/.env.local
+deployment/.env.dev
+# The main config names an environment's resources; the secrets folder holds
+# downloaded OAuth client JSON. Neither is committed.
+deployment/config.yaml
+deployment/config.*.yaml
+!deployment/config.example.yaml
+deployment/secrets/
+deployment/.state/
+artifacts/
+
+client_secret*.json
+*oauth*client*.json
+.oauth/
+*.pem
+*.key
+*.p12
+*.pfx
+credentials.json
+application_default_credentials.json
+deployment_result*.json
+
+# Terraform state and plans. State can contain resource detail and must never
+# be committed; tfvars can carry environment specifics.
+.terraform/
+*.tfstate
+*.tfstate.*
+terraform.tfvars
+*.tfplan
+crash.log
+crash.*.log
+tfplan
+provider-schema.json
+
+# Local scratch, and token files that must never be committed by accident.
+experiments/
+gitlab-token.txt

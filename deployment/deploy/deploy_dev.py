@@ -1,0 +1,76 @@
+from __future__ import annotations
+
+import sys
+from pathlib import Path
+
+# Runnable directly as well as imported by deploy/release.py, so deployment/ has to be
+# on sys.path either way: running this file puts only its own folder there.
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
+import argparse
+import os
+
+from config.bootstrap import ensure_dev_prerequisites
+from config.settings import (
+    load_environment,
+    require_deploy_environment,
+    validate_agent_remote_environment,
+)
+from paths import ROOT
+from registry import AgentSpec, get_agent_spec
+from vertexai import types
+
+from deploy.iam.apply_agent_identity_iam import apply_agent_identity_iam
+from deploy.runtime import build_app, build_client, deployment_config
+from deploy.sources import staged_extra_packages
+from deploy.state import save_state
+
+
+def deploy_agent(
+    agent_name: str,
+    project_id: str,
+    location: str,
+    staging_bucket: str,
+    spec: AgentSpec,
+) -> str:
+    """Create a developer-owned Agent Engine and record its resource name."""
+    validate_agent_remote_environment(spec)
+
+    client = build_client(project_id, location, staging_bucket)
+    app = build_app(spec)
+    with staged_extra_packages(spec) as extra_packages:
+        remote = client.agent_engines.create(
+            agent=app,
+            config={
+                "display_name": f"{spec.display_name} [dev]",
+                **deployment_config(spec, staging_bucket, extra_packages),
+                "identity_type": types.IdentityType.AGENT_IDENTITY,
+            },
+        )
+    resource_name = remote.api_resource.name
+    # Persist first so an IAM failure does not cause a second runtime to be created
+    # on the next release attempt.
+    save_state(agent_name, resource_name, project_id, location)
+    apply_agent_identity_iam(agent_name, project_id, resource_name, spec)
+    return resource_name
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(
+        description="Create a developer-owned Agent Engine instance in dev."
+    )
+    parser.add_argument("--agent", required=True)
+    args = parser.parse_args()
+
+    os.chdir(ROOT)
+    load_environment(".env.dev")
+    spec = get_agent_spec(args.agent)
+    project_id, location, staging_bucket = require_deploy_environment(spec=spec)
+    ensure_dev_prerequisites(project_id, location, staging_bucket, spec)
+
+    resource_name = deploy_agent(args.agent, project_id, location, staging_bucket, spec)
+    print(f"DEPLOYED_DEV_RESOURCE={resource_name}")
+
+
+if __name__ == "__main__":
+    main()

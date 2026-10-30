@@ -1,0 +1,4 @@
+# Chief Analyst Orchestration Configuration
+workflow_name: "chief_analyst"
+stage_name: "external_intelligence_stage"
+output_app_name: "kitchen_executive_system"
