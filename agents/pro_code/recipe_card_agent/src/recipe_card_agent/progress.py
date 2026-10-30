@@ -5,7 +5,8 @@ nothing while a tool runs. Outside live mode a tool cannot post a message
 itself, so the image tool reports each stored image through a callback
 registered for its invocation, and ProgressAgent, the root agent, posts each
 report as a message while the tool is still working. It also posts a line as
-each long step starts, the way the Growth workflow does between its stages.
+each long step starts, the way the Growth workflow does between its stages,
+including the minutes the model spends writing the recipe and the prompts.
 """
 
 from __future__ import annotations
@@ -60,6 +61,20 @@ def _start_line(call: types.FunctionCall) -> str | None:
     if (call.args or {}).get("mode") == "sequential_reference":
         return f"Photographing the hero and steps: {len(names)} images."
     return f"Photographing the ingredients: {len(names)} images."
+
+
+def _next_line(response: types.FunctionResponse) -> str | None:
+    """The line for the model's writing that follows a tool result, if it is long.
+
+    Writing the recipe and the photograph prompts each take the model a minute
+    or two with no tool running, so the chat would otherwise sit silent.
+    """
+    if response.name == "list_folders":
+        return "Writing the recipe."
+    images = (response.response or {}).get("images") or {}
+    if response.name == "generate_recipe_images" and set(images) == {"sketch"}:
+        return "Writing the photograph prompts."
+    return None
 
 
 class ProgressAgent(BaseAgent):
@@ -118,6 +133,10 @@ class ProgressAgent(BaseAgent):
                     if line:
                         yield self._message(ctx, line)
                 yield item
+                for response in item.get_function_responses():
+                    line = _next_line(response)
+                    if line:
+                        yield self._message(ctx, line)
                 stored.set_result(None)
             await task
         finally:

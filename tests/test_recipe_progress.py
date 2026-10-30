@@ -15,6 +15,27 @@ NAMES = ["garlic", "onion", "basil"]
 TOOL = "generate_recipe_images"
 PHOTOS = {"names": ["hero", "step-1"], "mode": "sequential_reference"}
 RETRY = {"names": ["step-2"], "mode": "sequential_reference"}
+SKETCH = {"names": ["sketch"], "mode": "parallel"}
+# The model's turns in a card: look for one, draw the sketch, two image calls at
+# once, then one more, so the parallel pair is read back from history.
+TURNS = [
+    [("list_folders", {})],
+    [(TOOL, SKETCH)],
+    [(TOOL, {"names": NAMES, "mode": "parallel"}), (TOOL, PHOTOS)],
+    [(TOOL, RETRY)],
+]
+PAIR = [
+    "- garlic ready (1 of 3)",
+    "- onion ready (2 of 3)",
+    "- basil ready (3 of 3)",
+    "- hero ready (1 of 2)",
+    "- step-1 ready (2 of 2)",
+]
+
+
+def list_folders() -> dict:
+    """Stands in for the card listing: no card exists yet."""
+    return {"folder_count": 0, "folders": []}
 
 
 async def generate_recipe_images(names: list[str], mode: str, tool_context: ToolContext) -> dict:
@@ -36,15 +57,11 @@ def run_card():
     class FakeModel(BaseLlm):
         async def generate_content_async(self, llm_request, stream=False):
             requests.append(llm_request)
-            # Two image calls in one turn, as the card makes them, then one
-            # more call, so the model reads the parallel pair back from history.
-            if len(requests) == 1:
+            if len(requests) <= len(TURNS):
                 parts = [
-                    types.Part(function_call=types.FunctionCall(name=TOOL, args=args))
-                    for args in ({"names": NAMES, "mode": "parallel"}, PHOTOS)
+                    types.Part(function_call=types.FunctionCall(name=name, args=args))
+                    for name, args in TURNS[len(requests) - 1]
                 ]
-            elif len(requests) == 2:
-                parts = [types.Part(function_call=types.FunctionCall(name=TOOL, args=RETRY))]
             else:
                 parts = [types.Part(text="Card ready")]
             yield LlmResponse(content=types.Content(role="model", parts=parts))
@@ -53,7 +70,7 @@ def run_card():
         writer = Agent(
             name="writer",
             model=FakeModel(model="fake"),
-            tools=[generate_recipe_images],
+            tools=[list_folders, generate_recipe_images],
             disallow_transfer_to_parent=True,
         )
         runner = InMemoryRunner(
@@ -74,7 +91,7 @@ def run_card():
     return asyncio.run(run()), requests
 
 
-def test_each_image_is_posted_while_the_tool_runs():
+def test_each_step_and_image_is_posted_while_the_card_is_made():
     events, _ = run_card()
     lines = [
         part.text.strip()
@@ -82,33 +99,38 @@ def test_each_image_is_posted_while_the_tool_runs():
         for part in (event.content.parts if event.content else [])
         if part.text
     ]
-    results = [i for i, event in enumerate(events) if event.get_function_responses()]
-    first_result = events[results[0]].timestamp
+    assert lines[:4] == [
+        "Writing the recipe.",
+        "Drawing the sketch.",
+        "- sketch ready (1 of 1)",
+        "Writing the photograph prompts.",
+    ]
+    assert lines[4:6] == [
+        "Photographing the ingredients: 3 images.",
+        "Photographing the hero and steps: 2 images.",
+    ]
+    assert sorted(lines[6:11]) == sorted(PAIR)
+    assert lines[11:] == [
+        "Photographing the hero and steps: 1 images.",
+        "- step-2 ready (1 of 1)",
+        "Card ready",
+    ]
+
+
+def test_images_are_posted_before_their_call_returns():
+    events, _ = run_card()
+    pair_result = next(
+        e.timestamp
+        for e in events
+        for r in e.get_function_responses()
+        if "hero" in (r.response or {}).get("images", {})
+    )
     posted = {
         e.content.parts[0].text.strip(): e.timestamp
         for e in events
         if e.branch and "progress" in e.branch
     }
-    assert lines[:2] == [
-        "Photographing the ingredients: 3 images.",
-        "Photographing the hero and steps: 2 images.",
-    ]
-    assert sorted(lines[2:7]) == sorted(
-        [
-            "- garlic ready (1 of 3)",
-            "- onion ready (2 of 3)",
-            "- basil ready (3 of 3)",
-            "- hero ready (1 of 2)",
-            "- step-1 ready (2 of 2)",
-        ]
-    )
-    # Every line from the parallel pair is posted before either call returns.
-    assert all(posted[line] <= first_result for line in lines[2:7])
-    assert lines[-3:] == [
-        "Photographing the hero and steps: 1 images.",
-        "- step-2 ready (1 of 1)",
-        "Card ready",
-    ]
+    assert all(posted[line] <= pair_result for line in PAIR)
 
 
 def test_model_history_never_contains_progress_lines():
@@ -116,7 +138,7 @@ def test_model_history_never_contains_progress_lines():
     for request in requests[1:]:
         contents = request.contents
         texts = [p.text for c in contents for p in c.parts if p.text]
-        assert not any("ready (" in t or "Photographing" in t for t in texts)
+        assert not any("ready (" in t or "Writing the" in t or "Photographing" in t for t in texts)
         for i, content in enumerate(contents):
             calls = [p for p in content.parts if p.function_call]
             if calls:
