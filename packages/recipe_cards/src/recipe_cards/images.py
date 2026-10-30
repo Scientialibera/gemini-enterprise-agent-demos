@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import functools
+from collections.abc import Callable
 
 from gemini_shared.connectors.cloud_storage import upload_bytes
 from gemini_shared.media import ImageRequest, generate_images
@@ -40,6 +41,7 @@ def generate_recipe_images(
     mode: str = MODE_PARALLEL,
     run_id: str = "",
     use_reference_images: bool = True,
+    on_stored: Callable[[str], None] | None = None,
 ) -> dict[str, object]:
     """Generate recipe images and return paths relative to the card store.
 
@@ -136,6 +138,8 @@ def generate_recipe_images(
         uris[image.name] = relative
         existing[safe_slug(image.name)] = relative
         save_run(tool_context, run_id, {**run, "images": existing})
+        if on_stored:
+            on_stored(image.name)
 
     failure = None
     model = image_model_name()

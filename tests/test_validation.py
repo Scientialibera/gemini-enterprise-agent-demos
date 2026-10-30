@@ -39,6 +39,14 @@ ALL_AGENTS = [name for name in ALL_ENTRIES if not registry.AGENTS[name].is_workf
 ALL_WORKFLOWS = [name for name in ALL_ENTRIES if registry.AGENTS[name].is_workflow]
 
 
+def model_agent(module):
+    """The agent the model runs as; a wrapper like ProgressAgent holds it as its one sub-agent."""
+    agent = module.root_agent
+    while not hasattr(agent, "tools") and len(agent.sub_agents) == 1:
+        agent = agent.sub_agents[0]
+    return agent
+
+
 @pytest.fixture(autouse=True)
 def environment(monkeypatch):
     for name in list(os.environ):
@@ -253,7 +261,7 @@ def test_model_callback(monkeypatch):
 
     for agent in ALL_AGENTS:
         module = importlib.import_module(f"{agent}.agent")
-        assert module.root_agent.before_model_callback is apply_runtime_model
+        assert model_agent(module).before_model_callback is apply_runtime_model
 
 
 @pytest.mark.parametrize("agent", ALL_AGENTS)
@@ -264,7 +272,7 @@ def test_every_tool_is_described_to_the_model(agent):
 
     module = importlib.import_module(f"{agent}.agent")
     undescribed = []
-    for tool in module.root_agent.tools:
+    for tool in model_agent(module).tools:
         # Remote tool descriptions require a server connection.
         if isinstance(tool, BaseToolset):
             continue
@@ -283,7 +291,7 @@ def test_every_tool_is_described_to_the_model(agent):
 def test_instruction_resolves_from_runtime_configuration(agent):
     """Each agent resolves its instruction through a callback."""
     module = importlib.import_module(f"{agent}.agent")
-    assert callable(module.root_agent.instruction), (
+    assert callable(model_agent(module).instruction), (
         f"{agent} must resolve its instruction from runtime configuration"
     )
 
@@ -507,7 +515,8 @@ def test_no_agent_carries_the_status_tool():
     for agent in ALL_AGENTS:
         module = importlib.import_module(f"{agent}.agent")
         names = {
-            getattr(tool, "__name__", getattr(tool, "name", "")) for tool in module.root_agent.tools
+            getattr(tool, "__name__", getattr(tool, "name", ""))
+            for tool in model_agent(module).tools
         }
         assert "report_runtime_config" not in names, agent
 

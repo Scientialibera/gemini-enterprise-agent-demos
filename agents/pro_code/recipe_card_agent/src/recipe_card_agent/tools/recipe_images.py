@@ -6,6 +6,8 @@ from gemini_shared.media.images import MODE_PARALLEL
 from google.adk.tools import ToolContext
 from recipe_cards import images
 
+from ..progress import image_reporter
+
 
 async def generate_recipe_images(
     recipe_slug: str,
@@ -29,6 +31,7 @@ async def generate_recipe_images(
         mode=mode,
         run_id=run_id,
         use_reference_images=use_reference_images,
+        on_stored=image_reporter(tool_context.invocation_id, names),
     )
 
 
